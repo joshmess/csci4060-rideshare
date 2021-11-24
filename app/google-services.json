@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "55305036283",
+    "project_id": "csci4060-rideshare",
+    "storage_bucket": "csci4060-rideshare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55305036283:android:ce90928b977202fe0eeb5e",
+        "android_client_info": {
+          "package_name": "edu.uga.cs.csci4060_rideshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55305036283-6tgcig1f0je6oldppr9ukp7ht5cgj1fb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0NvimmAwc_NDu7xPaKC1i-aEOBBjWnRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55305036283-6tgcig1f0je6oldppr9ukp7ht5cgj1fb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
