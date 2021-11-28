@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Available Rides"
-        android:textSize="25sp"/>
+        android:textSize="40sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,48 +22,54 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="80dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pickupLocationInput"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/browser_actions_context_menu_max_width"
+            android:layout_height="80dp"
             android:hint="Where do you want to be picked up?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="80dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dropoffLocationInput"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/browser_actions_context_menu_max_width"
+            android:layout_height="80dp"
             android:hint="Where are you going?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="80dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rideDateInput"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/browser_actions_context_menu_max_width"
+            android:layout_height="80dp"
             android:hint="When would you like the ride by?" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
-        android:id="@+id/submitOffer"
+        android:id="@+id/submitRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make a request!" />
+        android:text="Make a ride request!" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My offers"
         android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/viewAsDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View as driver" />
 
     <Button
         android:id="@+id/logout"

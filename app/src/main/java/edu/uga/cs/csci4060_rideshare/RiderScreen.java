@@ -11,9 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RiderScreen extends AppCompatActivity {
 
-    private Button logOutBtn;
-    private Button driverBtn;
-    private Button riderBtn;
+    private Button driverViewBtn, makeRequestBtn, logOutBtn;
     private FirebaseAuth auth;
 
     @Override
@@ -24,6 +22,18 @@ public class RiderScreen extends AppCompatActivity {
         logOutBtn = findViewById(R.id.logout);
 
         auth = FirebaseAuth.getInstance();
+
+        makeRequestBtn = findViewById(R.id.submitRequest);
+
+
+        driverViewBtn = findViewById(R.id.viewAsDriver);
+        driverViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DriverScreen.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
 

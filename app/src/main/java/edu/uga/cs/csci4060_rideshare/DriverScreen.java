@@ -22,7 +22,7 @@ import java.sql.Driver;
 
 public class DriverScreen extends AppCompatActivity {
 
-    private Button makeOfferBtn, logOutBtn;
+    private Button makeOfferBtn, riderViewBtn, logOutBtn;
     private EditText departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
 
@@ -56,6 +56,15 @@ public class DriverScreen extends AppCompatActivity {
         logOutBtn = findViewById(R.id.logout);
 
         auth = FirebaseAuth.getInstance();
+
+        riderViewBtn = findViewById(R.id.viewAsRider);
+        riderViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RiderScreen.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
         logOutBtn.setOnClickListener(new View.OnClickListener() {
 
