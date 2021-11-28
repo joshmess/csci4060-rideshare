@@ -8,17 +8,13 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.*;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-
-import java.sql.Driver;
+import android.widget.Toast;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class DriverScreen extends AppCompatActivity {
 
@@ -26,25 +22,7 @@ public class DriverScreen extends AppCompatActivity {
     private EditText departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
 
-    private URL FIREBASE;
-
-    {
-        try {
-            FIREBASE = new URL("https://csci4060-rideshare-default-rtdb.firebaseio.com/");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // [START declare_database_ref]
-    private DatabaseReference mDatabase;
-    // [END declare_database_ref]
-
-    public DriverScreen(DatabaseReference database) {
-        // [START initialize_database_ref]
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        // [END initialize_database_ref]
-    }  // https://github.com/firebase/snippets-android/blob/8184cba2c40842a180f91dcfb4a216e721cc6ae6/database/app/src/main/java/com/google/firebase/referencecode/database/ReadAndWriteSnippets.java
+    private String FIREBASE_URL = "https://csci4060-rideshare-default-rtdb.firebaseio.com/";
 
     public DriverScreen(){}
 
@@ -91,12 +69,32 @@ public class DriverScreen extends AppCompatActivity {
                 pickup = departureLocation.getText().toString();
                 dropoff = arrivalLocation.getText().toString();
                 start = departureTime.getText().toString();
-                Ride ride = new Ride(Boolean.TRUE, null, dropoff, pickup, start);
+                Ride newRide = new Ride(Boolean.TRUE, null, dropoff, pickup, start);
 
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("ride-offers");
 
-                // TODO: pain - invalid path error
-                mDatabase = FirebaseDatabase.getInstance().getReference("csci4060-rideshare-default");
-                mDatabase.child("rides").child(String.valueOf(departureLocation)).setValue("ride");
+                myRef.push().setValue( newRide )
+                        .addOnSuccessListener( new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Show a quick confirmation
+                                Toast.makeText(getApplicationContext(), "Ride created for " + newRide.getDestinationLocation(),
+                                        Toast.LENGTH_SHORT).show();
+
+                                // Clear the EditTexts for next use.
+                                departureLocation.setText("");
+                                arrivalLocation.setText("");
+                                departureTime.setText("");
+                            }
+                        })
+                        .addOnFailureListener( new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                Toast.makeText( getApplicationContext(), "Failed to create a ride for " + newRide.getDestinationLocation(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 

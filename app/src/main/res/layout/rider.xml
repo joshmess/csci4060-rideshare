@@ -25,7 +25,7 @@
         android:layout_height="80dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pickupLocationInput"
+            android:id="@+id/departureAddress"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
             android:layout_height="80dp"
             android:hint="Where do you want to be picked up?" />
@@ -36,7 +36,7 @@
         android:layout_height="80dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dropoffLocationInput"
+            android:id="@+id/destinationAddress"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
             android:layout_height="80dp"
             android:hint="Where are you going?" />
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rideDateInput"
+            android:id="@+id/departureTime"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
             android:layout_height="80dp"
             android:hint="When would you like the ride by?" />
