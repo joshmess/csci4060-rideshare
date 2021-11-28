@@ -11,9 +11,9 @@ As a ..., I want to... Register
 * c. Error shown if unknown email/password combination ✔
 3. Logout
 * a. Can’t invoke any app functions after logout ✔
-4. View the list of ride offers or ride requests ❌
-5. Post a ride offer (as a driver) ❌
-6. Post a ride request (as a rider) ❌
+4. View the list of ride offers or ride requests ✔
+5. Post a ride offer (as a driver) ✔
+6. Post a ride request (as a rider) ✔
 7. Update an unaccepted ride offer ❌
 8. Update an unaccepted ride request ❌
 9. Delete an unaccepted ride offer ❌
