@@ -26,6 +26,7 @@ public class SignIn extends AppCompatActivity {
 
     private EditText emailEt, pwdEt;
     private Button logInBtn;
+    private Button signUpBtn;
     private FirebaseAuth auth;
 
     @Override
@@ -47,6 +48,15 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v)
             {
                 loginUser();
+            }
+        });
+
+        signUpBtn = findViewById(R.id.signupAlt);
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( v.getContext(), SignUp.class );
+                v.getContext().startActivity( intent );
             }
         });
     }

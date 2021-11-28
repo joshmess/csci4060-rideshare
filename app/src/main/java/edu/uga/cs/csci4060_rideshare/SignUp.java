@@ -27,7 +27,7 @@ public class SignUp extends AppCompatActivity {
 
     private static final String TAG = "RideShare";
     private EditText emailEt, pwdEt;
-    private Button signUpBtn;
+    private Button signUpBtn, signInButton;
     private FirebaseAuth auth;
 
     @Override
@@ -48,6 +48,18 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v)
             {
                 registerNewUser();
+            }
+        });
+
+        signInButton = findViewById(R.id.signInAlt);
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( v.getContext(), SignIn.class );
+                v.getContext().startActivity( intent );
+
             }
         });
     }

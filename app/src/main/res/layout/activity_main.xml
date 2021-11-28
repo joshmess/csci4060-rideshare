@@ -11,8 +11,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to RideShare!"
+        android:text="Welcome to RideShare!\nI am a ..."
         android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/userDriver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Driver" />
+
+    <Button
+        android:id="@+id/userRider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rider" />
 
     <Button
         android:id="@+id/logout"
