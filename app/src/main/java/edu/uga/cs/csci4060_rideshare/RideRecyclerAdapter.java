@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,9 +32,9 @@ public class RideRecyclerAdapter extends RecyclerView.Adapter<RideRecyclerAdapte
         public RideHolder(View itemView ) {
             super(itemView);
 
-            destination = (TextView) itemView.findViewById( R.id.destinationAddress );
-            departure = (TextView) itemView.findViewById( R.id.departureAddress );
-            time = (TextView) itemView.findViewById( R.id.departureTime );
+            destination = itemView.findViewById( R.id.destinationAddress );
+            departure = itemView.findViewById( R.id.departureAddress );
+            time = itemView.findViewById( R.id.departureTime );
         }
     }
 

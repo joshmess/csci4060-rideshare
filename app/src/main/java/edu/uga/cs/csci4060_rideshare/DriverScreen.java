@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +31,7 @@ public class DriverScreen extends AppCompatActivity {
     public static final String DEBUG_TAG = "DriverScreen";
 
     private Button makeOfferBtn, riderViewBtn, logOutBtn;
-    private EditText departureLocation, arrivalLocation, departureTime;
+    private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
 
     private RecyclerView recyclerView;

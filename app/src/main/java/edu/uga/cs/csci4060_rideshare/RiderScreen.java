@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +31,7 @@ public class RiderScreen extends AppCompatActivity {
     public static final String DEBUG_TAG = "RiderScreen";
 
     private Button driverViewBtn, makeRequestBtn, logOutBtn;
-    private EditText departureLocation, arrivalLocation, departureTime;
+    private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
 
     private RecyclerView recyclerView;
