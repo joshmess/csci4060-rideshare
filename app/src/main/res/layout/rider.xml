@@ -16,7 +16,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="83dp" />
+        android:layout_height="183dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,35 +27,35 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/departureAddress"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
             android:hint="Where do you want to be picked up?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/destinationAddress"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
             android:hint="Where are you going?" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="50dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/departureTime"
             android:layout_width="@dimen/browser_actions_context_menu_max_width"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:inputType="date"
             android:hint="When would you like the ride by?" />
     </com.google.android.material.textfield.TextInputLayout>
