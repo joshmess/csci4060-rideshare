@@ -94,7 +94,8 @@ public class SignUp extends AppCompatActivity {
                 }
                 else {
 
-                    Toast.makeText(getApplicationContext(), "Registration failed." + " Maybe you already have an account", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Registration failed." , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Check Email Format.", Toast.LENGTH_LONG).show();
 
 
                 }

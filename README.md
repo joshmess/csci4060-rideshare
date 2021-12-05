@@ -4,7 +4,7 @@ CSCI 4060 Final Project
 As a ..., I want to... Register
 * a. Legal email format ✔
 * b. Unique email ✔
-* c. Error shown if illegal email format ❌
+* c. Error shown if illegal email format ✔
 2. As a ..., I want to... Login
 * a. Account exists (user already registered) ✔
 * b. Can use app’s functions after a successful login ✔
