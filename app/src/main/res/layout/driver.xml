@@ -102,11 +102,11 @@
             android:text="Update Ride" />
 
         <Button
-            android:id="@+id/delete"
+            android:id="@+id/accept"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Delete Ride" />
+            android:text="Accept Ride" />
     </LinearLayout>
 
     <LinearLayout
