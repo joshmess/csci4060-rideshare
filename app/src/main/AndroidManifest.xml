@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".RiderScreen">
         </activity>
+        <activity android:name=".AccountDetails">
+        </activity>
     </application>
 
 </manifest>

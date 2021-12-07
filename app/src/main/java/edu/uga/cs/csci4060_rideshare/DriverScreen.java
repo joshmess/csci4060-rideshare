@@ -33,7 +33,7 @@ public class DriverScreen extends AppCompatActivity {
     private Button makeOfferBtn, riderViewBtn, logOutBtn;
     private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
-
+    private Button account;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter recyclerAdapter;
@@ -48,8 +48,17 @@ public class DriverScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.driver);
 
-
         auth = FirebaseAuth.getInstance();
+        account = findViewById(R.id.account);
+
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent( v.getContext(), AccountDetails.class );
+                v.getContext().startActivity( intent );
+            }
+        });
 
         // Display ride requests for driver to accept
         recyclerView = (RecyclerView) findViewById( R.id.recyclerView );
