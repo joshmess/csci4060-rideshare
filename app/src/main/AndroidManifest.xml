@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".DeleteOffer">
         </activity>
+        <activity android:name=".DeleteRequest">
+        </activity>
     </application>
 
 </manifest>
