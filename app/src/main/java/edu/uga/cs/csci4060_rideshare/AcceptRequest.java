@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class AcceptRequest extends AppCompatActivity {
 
-    public static final String DEBUG_TAG = "AcceptOffer";
+    public static final String DEBUG_TAG = "AcceptRequest";
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -34,6 +35,7 @@ public class AcceptRequest extends AppCompatActivity {
     private EditText destLoc,newDepart,newDest,newTime;
     private Button update;
     private List<Ride> rideList;
+    private String app_user;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class AcceptRequest extends AppCompatActivity {
         rideList = new ArrayList<Ride>();
         // get a Firebase DB instance reference
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("ride-offers");
+        DatabaseReference myRef = database.getReference("ride-requests");
 
         myRef.addListenerForSingleValueEvent( new ValueEventListener() {
 
@@ -63,8 +65,6 @@ public class AcceptRequest extends AppCompatActivity {
                     rideList.add(ride);
                     Log.d( DEBUG_TAG, "ReviewJobLeadsActivity.onCreate(): added: " + ride );
                 }
-                Log.d( DEBUG_TAG, "ReviewJobLeadsActivity.onCreate(): setting recyclerAdapter" );
-
                 // Now, create a JobLeadRecyclerAdapter to populate a RecyclerView to display the job leads.
                 recyclerAdapter = new RideRecyclerAdapter( rideList );
                 recyclerView.setAdapter( recyclerAdapter );
@@ -92,28 +92,57 @@ public class AcceptRequest extends AppCompatActivity {
                 start = newTime.getText().toString();
                 Ride newRide = new Ride(Boolean.FALSE, null, dropoff, pickup, start);
 
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                auth = FirebaseAuth.getInstance();
+                String userEmail = null;
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    userEmail = user.getEmail();
+                } else {
+                    // No user is signed in
+                }
+                app_user = userEmail;
+                DatabaseReference myRef = database.getReference(app_user + "-rides");
+
+                // Push to user profile
+                myRef.push().setValue( newRide )
+                        .addOnSuccessListener( new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Show a quick confirmation
+                                Toast.makeText(getApplicationContext(), "Ride created for " + newRide.getDestinationLocation(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener( new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception e) {
+                                Toast.makeText( getApplicationContext(), "Failed to create a ride for " + newRide.getDestinationLocation(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                 delQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        DatabaseReference myRef = database.getReference("ride-requests");
+
                         for (DataSnapshot rideSnapshot: dataSnapshot.getChildren()) {
-                            rideSnapshot.getRef().setValue(newRide).addOnSuccessListener( new OnSuccessListener<Void>() {
+                            rideSnapshot.getRef().removeValue().addOnSuccessListener( new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     // Show a quick confirmation
-                                    Toast.makeText(getApplicationContext(), "Ride updated: " + newRide.getDestinationLocation(),
+                                    Toast.makeText(getApplicationContext(), "Ride deleted: " + destToDelete,
                                             Toast.LENGTH_SHORT).show();
 
                                     // Clear the EditTexts for next use.
-                                    newDepart.setText("");
-                                    newDest.setText("");
-                                    newTime.setText("");
+                                    destLoc.setText("");
                                 }
                             })
                                     .addOnFailureListener( new OnFailureListener() {
                                         @Override
                                         public void onFailure(Exception e) {
-                                            Toast.makeText( getApplicationContext(), "Failed to create a ride for " + newRide.getDestinationLocation(),
+                                            Toast.makeText( getApplicationContext(), "Failed to delete a ride for " + destToDelete,
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     });
