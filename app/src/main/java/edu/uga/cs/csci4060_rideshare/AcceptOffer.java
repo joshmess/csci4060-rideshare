@@ -1,6 +1,5 @@
 package edu.uga.cs.csci4060_rideshare;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,9 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdateOffer extends AppCompatActivity {
+public class AcceptOffer extends AppCompatActivity {
 
-    public static final String DEBUG_TAG = "UpdateOffer";
+    public static final String DEBUG_TAG = "AcceptOffer";
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -38,7 +37,7 @@ public class UpdateOffer extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.update_ride);
+        setContentView(R.layout.accept_ride);
         update = findViewById(R.id.update);
         newDepart = findViewById(R.id.newDepartureAddress);
         newDest = findViewById(R.id.newDestinationAddress);
@@ -49,7 +48,6 @@ public class UpdateOffer extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this );
         recyclerView.setLayoutManager( layoutManager );
         rideList = new ArrayList<Ride>();
-
         // get a Firebase DB instance reference
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("ride-offers");
@@ -63,8 +61,11 @@ public class UpdateOffer extends AppCompatActivity {
                 for( DataSnapshot postSnapshot: snapshot.getChildren() ) {
                     Ride ride = postSnapshot.getValue(Ride.class);
                     rideList.add(ride);
+                    Log.d( DEBUG_TAG, "ReviewJobLeadsActivity.onCreate(): added: " + ride );
                 }
+                Log.d( DEBUG_TAG, "ReviewJobLeadsActivity.onCreate(): setting recyclerAdapter" );
 
+                // Now, create a JobLeadRecyclerAdapter to populate a RecyclerView to display the job leads.
                 recyclerAdapter = new RideRecyclerAdapter( rideList );
                 recyclerView.setAdapter( recyclerAdapter );
             }

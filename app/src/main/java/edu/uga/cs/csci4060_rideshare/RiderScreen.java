@@ -30,7 +30,7 @@ public class RiderScreen extends AppCompatActivity {
 
     public static final String DEBUG_TAG = "RiderScreen";
 
-    private Button driverViewBtn, makeRequestBtn, logOutBtn, deleteBtn,updateBtn;
+    private Button driverViewBtn, makeRequestBtn, logOutBtn, deleteBtn,updateBtn, acceptBtn;
     private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
     private Button account;
@@ -161,6 +161,18 @@ public class RiderScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DriverScreen.class);
                 v.getContext().startActivity(intent);
+            }
+        });
+
+        // Accept Ride
+        acceptBtn = findViewById(R.id.accept);
+        acceptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent( v.getContext(), AcceptOffer.class );
+                v.getContext().startActivity( intent );
+
             }
         });
 

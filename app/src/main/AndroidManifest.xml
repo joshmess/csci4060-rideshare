@@ -45,6 +45,10 @@
         </activity>
         <activity android:name=".UpdateRequest">
         </activity>
+        <activity android:name=".AcceptOffer">
+        </activity>
+        <activity android:name=".AcceptRequest">
+        </activity>
     </application>
 
 </manifest>

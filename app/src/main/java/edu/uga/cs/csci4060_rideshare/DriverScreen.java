@@ -30,7 +30,7 @@ public class DriverScreen extends AppCompatActivity {
 
     public static final String DEBUG_TAG = "DriverScreen";
 
-    private Button makeOfferBtn, riderViewBtn, logOutBtn,deleteBtn,updateBtn;
+    private Button makeOfferBtn, riderViewBtn, logOutBtn,deleteBtn,updateBtn, acceptBtn;
     private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
     private Button account;
@@ -167,6 +167,18 @@ public class DriverScreen extends AppCompatActivity {
             }
         });
 
+        // Accept Ride
+        acceptBtn = findViewById(R.id.accept);
+        acceptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent( v.getContext(), AcceptRequest.class );
+                v.getContext().startActivity( intent );
+
+            }
+        });
+
         // Logout
         logOutBtn = findViewById(R.id.logout);
         logOutBtn.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +225,8 @@ public class DriverScreen extends AppCompatActivity {
                 .addOnFailureListener( new OnFailureListener() {
                     @Override
                     public void onFailure(Exception e) {
-                        Toast.makeText( getApplicationContext(), "Failed to create a ride for " + ride.getDestinationLocation(),
+                        Toast.makeText( getApplicationContext(), "" +
+                                        "Failed to create a ride for " + ride.getDestinationLocation(),
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
