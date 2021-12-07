@@ -6,12 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +36,7 @@ public class AccountDetails extends AppCompatActivity {
     private RecyclerView.Adapter recyclerAdapter;
     private List<Ride> rideList;
     private String app_user;
+    private Integer points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,21 @@ public class AccountDetails extends AppCompatActivity {
         app_user = userEmail;
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(app_user + "-rides");
+
+        myRef.push().setValue( points )
+                .addOnSuccessListener( new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Show a quick confirmation
+                    }
+                })
+                .addOnFailureListener( new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText( getApplicationContext(), "Failed to update points",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         myRef.addListenerForSingleValueEvent( new ValueEventListener() {
 
