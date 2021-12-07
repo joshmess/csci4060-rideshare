@@ -30,7 +30,7 @@ public class DriverScreen extends AppCompatActivity {
 
     public static final String DEBUG_TAG = "DriverScreen";
 
-    private Button makeOfferBtn, riderViewBtn, logOutBtn,deleteBtn;
+    private Button makeOfferBtn, riderViewBtn, logOutBtn,deleteBtn,updateBtn;
     private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
     private Button account;
@@ -51,12 +51,21 @@ public class DriverScreen extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         account = findViewById(R.id.account);
         deleteBtn = findViewById(R.id.delete);
+        updateBtn = findViewById(R.id.update);
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent( v.getContext(), AccountDetails.class );
+                v.getContext().startActivity( intent );
+            }
+        });
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent( v.getContext(), UpdateOffer.class );
                 v.getContext().startActivity( intent );
             }
         });

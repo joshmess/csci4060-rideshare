@@ -25,21 +25,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeleteOffer extends AppCompatActivity {
+public class UpdateRequest extends AppCompatActivity {
 
-    public static final String DEBUG_TAG = "DeleteOffer";
+    public static final String DEBUG_TAG = "UpdateRequest";
     private FirebaseAuth auth;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter recyclerAdapter;
-    private EditText destLoc;
-    private Button delete;
+    private EditText destLoc,newDepart,newDest,newTime;
+    private Button update;
     private List<Ride> rideList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.delete_ride);
-        delete = findViewById(R.id.delete);
+        setContentView(R.layout.update_ride);
+        update = findViewById(R.id.update);
+        newDepart = findViewById(R.id.newDepartureAddress);
+        newDest = findViewById(R.id.newDestinationAddress);
+        newTime = findViewById(R.id.newDepartureTime);
         destLoc = findViewById(R.id.destLoc);
         auth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) findViewById( R.id.recyclerView );
@@ -48,7 +51,7 @@ public class DeleteOffer extends AppCompatActivity {
         rideList = new ArrayList<Ride>();
         // get a Firebase DB instance reference
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("ride-offers");
+        DatabaseReference myRef = database.getReference("ride-requests");
 
         myRef.addListenerForSingleValueEvent( new ValueEventListener() {
 
@@ -74,7 +77,7 @@ public class DeleteOffer extends AppCompatActivity {
             }
         } );
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -82,25 +85,36 @@ public class DeleteOffer extends AppCompatActivity {
                 System.out.println("DEST SELECTED::::" + destToDelete);
 
                 Query delQuery = myRef.orderByChild("destinationLocation").equalTo(destToDelete);
+
+                String pickup, dropoff, start;
+
+                pickup = newDepart.getText().toString();
+                dropoff = newDest.getText().toString();
+                start = newTime.getText().toString();
+                Ride newRide = new Ride(Boolean.FALSE, null, dropoff, pickup, start);
+
+
                 delQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot rideSnapshot: dataSnapshot.getChildren()) {
-                            rideSnapshot.getRef().removeValue().addOnSuccessListener( new OnSuccessListener<Void>() {
+                            rideSnapshot.getRef().setValue(newRide).addOnSuccessListener( new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     // Show a quick confirmation
-                                    Toast.makeText(getApplicationContext(), "Ride deleted: " + destToDelete,
+                                    Toast.makeText(getApplicationContext(), "Ride updated: " + newRide.getDestinationLocation(),
                                             Toast.LENGTH_SHORT).show();
 
                                     // Clear the EditTexts for next use.
-                                    destLoc.setText("");
+                                    newDepart.setText("");
+                                    newDest.setText("");
+                                    newTime.setText("");
                                 }
                             })
                                     .addOnFailureListener( new OnFailureListener() {
                                         @Override
                                         public void onFailure(Exception e) {
-                                            Toast.makeText( getApplicationContext(), "Failed to delete a ride for " + destToDelete,
+                                            Toast.makeText( getApplicationContext(), "Failed to create a ride for " + newRide.getDestinationLocation(),
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     });

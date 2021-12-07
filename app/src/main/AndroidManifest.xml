@@ -41,6 +41,10 @@
         </activity>
         <activity android:name=".DeleteRequest">
         </activity>
+        <activity android:name=".UpdateOffer">
+        </activity>
+        <activity android:name=".UpdateRequest">
+        </activity>
     </application>
 
 </manifest>
