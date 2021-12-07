@@ -26,8 +26,14 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".DriverScreen">
+            <meta-data
+                android:name="android.support.MainActivity"
+                android:value="edu.uga.cs.csci4060_rideshare.MainActivity" />
         </activity>
         <activity android:name=".RiderScreen">
+            <meta-data
+                android:name="android.support.MainActivity"
+                android:value="edu.uga.cs.csci4060_rideshare.MainActivity" />
         </activity>
         <activity android:name=".AccountDetails">
         </activity>

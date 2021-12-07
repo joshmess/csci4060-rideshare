@@ -145,29 +145,29 @@ public class DriverScreen extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+        });
 
-                // Swap to rider view
-                riderViewBtn = findViewById(R.id.viewAsRider);
-                riderViewBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(v.getContext(), RiderScreen.class);
-                        v.getContext().startActivity(intent);
-                    }
-                });
+        // Swap to rider view
+        riderViewBtn = findViewById(R.id.viewAsRider);
+        riderViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RiderScreen.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
-                // Logout
-                logOutBtn = findViewById(R.id.logout);
-                logOutBtn.setOnClickListener(new View.OnClickListener() {
+        // Logout
+        logOutBtn = findViewById(R.id.logout);
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        FirebaseAuth.getInstance().signOut();
-                        Intent intent = new Intent( v.getContext(), SignIn.class );
-                        v.getContext().startActivity( intent );
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent( v.getContext(), SignIn.class );
+                v.getContext().startActivity( intent );
 
-                    }
-                });
             }
         });
 
