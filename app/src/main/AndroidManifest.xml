@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".AccountDetails">
         </activity>
+        <activity android:name=".DeleteOffer">
+        </activity>
     </application>
 
 </manifest>

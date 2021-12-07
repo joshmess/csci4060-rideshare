@@ -30,7 +30,7 @@ public class DriverScreen extends AppCompatActivity {
 
     public static final String DEBUG_TAG = "DriverScreen";
 
-    private Button makeOfferBtn, riderViewBtn, logOutBtn;
+    private Button makeOfferBtn, riderViewBtn, logOutBtn,deleteBtn;
     private TextView departureLocation, arrivalLocation, departureTime;
     private FirebaseAuth auth;
     private Button account;
@@ -50,6 +50,7 @@ public class DriverScreen extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         account = findViewById(R.id.account);
+        deleteBtn = findViewById(R.id.delete);
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +60,16 @@ public class DriverScreen extends AppCompatActivity {
                 v.getContext().startActivity( intent );
             }
         });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent( v.getContext(), DeleteOffer.class );
+                v.getContext().startActivity( intent );
+            }
+        });
+
 
         // Display ride requests for driver to accept
         recyclerView = (RecyclerView) findViewById( R.id.recyclerView );

@@ -89,11 +89,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/update"
+            android:id="@+id/delete"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Update Ride" />
+            android:text="Delete Ride" />
 
         <Button
             android:id="@+id/accept"
